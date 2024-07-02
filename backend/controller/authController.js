@@ -7,12 +7,12 @@ export const signUpController = async (req,res) => {
         const { fullname, username, password, confirmPassword, gender } = req.body;
 
         if(password !== confirmPassword) {
-            return res.atatus(400).json({
+            return res.status(400).json({
                 error:"passwords do not match"
             })
         }
         if(password.length < 6) {
-            return res.atatus(400).json({
+            return res.status(400).json({
                 error:"password must be atleast 6 characters long"
             })
         }
@@ -20,7 +20,7 @@ export const signUpController = async (req,res) => {
         const user = await userModel.findOne({username:username})
 
         if(user) {
-            return res.atatus(400).json({
+            return res.status(400).json({
                 error:"An user with this username already exists"
             })
         }

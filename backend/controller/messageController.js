@@ -5,7 +5,7 @@ export const sendMessage = async(req,res) => {
     try {
         const { message } = req.body;
         const { id:recieverId } = req.params;
-        const senderId = req.userId;
+        const senderId = req.user._id;
 
         let conversation = await conversationModel.findOne({
                                 participants:{$all:[senderId,recieverId]}
